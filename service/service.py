@@ -170,7 +170,8 @@ async def logout_user(user_id: str, db: Session):
 
 
 async def fetch_all_credentials(db: Session):
-    return database.get_credentials(db)
+    credentials = database.get_credentials(db)
+    return {creds.credential_name: creds.credential_value for creds in credentials}
     
 
 def _generate_random_password(length=16):
